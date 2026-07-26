@@ -146,6 +146,16 @@
                     <i class="fa-solid fa-sliders text-lg w-6 text-center"></i>
                     <span>Pengaturan Website</span>
                 </a>
+
+                <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all {{ request()->routeIs('admin.users.*') ? 'bg-emerald-600 text-white font-semibold shadow-md' : 'text-emerald-100 hover:bg-emerald-800/60 hover:text-white' }}">
+                    <i class="fa-solid fa-user-shield text-lg w-6 text-center"></i>
+                    <span>Kelola Admin</span>
+                </a>
+
+                <a href="{{ route('admin.password.edit') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all {{ request()->routeIs('admin.password.*') ? 'bg-emerald-600 text-white font-semibold shadow-md' : 'text-emerald-100 hover:bg-emerald-800/60 hover:text-white' }}">
+                    <i class="fa-solid fa-key text-lg w-6 text-center"></i>
+                    <span>Ganti Password</span>
+                </a>
             </nav>
         </div>
 
@@ -182,6 +192,9 @@
                         <p class="text-xs font-bold text-slate-800 dark:text-slate-100">{{ Auth::user()->name ?? 'Administrator' }}</p>
                         <p class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold uppercase">Admin Utama</p>
                     </div>
+                    <a href="{{ route('admin.password.edit') }}" class="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 flex items-center justify-center transition" title="Ganti Password">
+                        <i class="fa-solid fa-key"></i>
+                    </a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="w-9 h-9 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 flex items-center justify-center transition" title="Logout">

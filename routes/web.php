@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\AgendaController;
 use App\Http\Controllers\Admin\PotensiController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\WebsiteVisitController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,4 +97,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Galeri CRUD
     Route::resource('galeri', GalleryController::class);
+
+    // Kelola Admin CRUD
+    Route::resource('users', UserController::class);
+
+    // Ganti Password
+    Route::get('/password', [PasswordController::class, 'edit'])->name('password.edit');
+    Route::put('/password', [PasswordController::class, 'update'])->name('password.update');
 });
