@@ -43,9 +43,13 @@
             
             <!-- Header -->
             <div class="text-center space-y-2">
-                <div class="w-16 h-16 rounded-2xl bg-[#14532D] text-emerald-400 flex items-center justify-center text-3xl mx-auto shadow-lg border border-emerald-500/30">
-                    <i class="fa-solid fa-user-shield"></i>
-                </div>
+                @php
+                    $siteSetting = \App\Models\SiteSetting::first();
+                    $logoUrl = ($siteSetting && $siteSetting->logo) 
+                        ? asset('storage/' . $siteSetting->logo) 
+                        : asset('images/logo.png');
+                @endphp
+                <img src="{{ $logoUrl }}" alt="Logo Desa" class="w-16 h-16 object-contain p-2 rounded-2xl bg-[#14532D] mx-auto shadow-lg border border-emerald-500/30">
                 <h1 class="text-2xl font-extrabold text-white tracking-tight">Admin Portal</h1>
                 <p class="text-xs text-slate-400">Website Resmi Desa Ketupat, Kecamatan Raas</p>
             </div>

@@ -9,7 +9,7 @@ class GalleryPublicController extends Controller
 {
     public function index()
     {
-        $galleries = Gallery::latest('event_date')->paginate(12);
+        $galleries = Gallery::latest('event_date')->paginate(10);
         return view('public.galeri.index', compact('galleries'));
     }
 }

@@ -33,7 +33,7 @@
 
         <!-- Slide 2 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0 flex items-center">
-            <div class="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-10000 ease-linear animate-pulse-glow" style="background-image: url('{{ asset('images/hero/hero-2.jpg') }}');"></div>
+            <div class="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-10000 ease-linear animate-pulse-glow" style="background-image: url('{{ asset('images/hero/hero-2.jpeg') }}');"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/30"></div>
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20">
                 <div class="max-w-2xl text-white space-y-5">
@@ -59,7 +59,7 @@
 
         <!-- Slide 3 -->
         <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out z-0 flex items-center">
-            <div class="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-10000 ease-linear animate-pulse-glow" style="background-image: url('{{ asset('images/hero/hero-3.jpg') }}');"></div>
+            <div class="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-10000 ease-linear animate-pulse-glow" style="background-image: url('{{ asset('images/hero/hero-3.webp') }}');"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/30"></div>
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20">
                 <div class="max-w-2xl text-white space-y-5">

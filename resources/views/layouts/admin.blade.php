@@ -80,9 +80,13 @@
         <div class="overflow-y-auto py-5 px-4 flex-1 no-scrollbar">
             <!-- Brand -->
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2 mb-6 border-b border-emerald-700/50 pb-4">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-xl border border-emerald-500/30">
-                    <i class="fa-solid fa-tree"></i>
-                </div>
+                @php
+                    $siteSetting = \App\Models\SiteSetting::first();
+                    $logoUrl = ($siteSetting && $siteSetting->logo) 
+                        ? asset('storage/' . $siteSetting->logo) 
+                        : asset('images/logo.png');
+                @endphp
+                <img src="{{ $logoUrl }}" alt="Logo Admin" class="w-10 h-10 object-contain p-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/30 shadow-sm">
                 <div>
                     <h1 class="font-bold text-lg leading-tight tracking-wide text-white">Desa Ketupat</h1>
                     <p class="text-xs text-emerald-300 font-medium">Admin Portal System</p>

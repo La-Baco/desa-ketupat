@@ -12,7 +12,7 @@
             <!-- Col 1: Identity -->
             <div class="space-y-4">
                 <div class="flex items-center gap-3">
-                    <img src="{{ $logoUrl }}" alt="Logo Desa Ketupat" class="h-12 w-12 object-contain rounded-xl bg-white/10 p-1 border border-white/20 shadow-lg shadow-emerald-950/50">
+                    <img src="{{ $logoUrl }}" alt="Logo Desa Ketupat" class="h-12 w-12 object-contain rounded-xl bg-white/10 p-1.5 border border-white/20 shadow-lg shadow-emerald-950/50">
                     <div>
                         <h3 class="font-extrabold text-xl text-white tracking-wide">DESA KETUPAT</h3>
                         <p class="text-xs text-emerald-400 font-semibold uppercase">Kecamatan Raas &bull; Sumenep</p>

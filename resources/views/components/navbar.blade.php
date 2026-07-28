@@ -10,7 +10,7 @@
         <div class="flex items-center justify-between h-20 gap-4">
             <!-- Brand Logo & Name -->
             <a href="{{ route('home') }}" class="flex items-center gap-3.5 group shrink-0">
-                <img src="{{ $logoUrl }}" alt="Logo Desa Ketupat" class="h-11 w-11 object-contain rounded-xl shadow-md border border-emerald-600/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                <img src="{{ $logoUrl }}" alt="Logo Desa Ketupat" class="h-11 w-11 object-contain p-1.5 rounded-xl shadow-md border border-emerald-600/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 bg-white/50 dark:bg-slate-800/50">
                 <div class="flex flex-col">
                     <span class="font-extrabold text-lg sm:text-xl text-[#14532D] dark:text-emerald-400 tracking-tight leading-tight group-hover:text-[#166534] dark:group-hover:text-emerald-300 transition-colors">
                         DESA KETUPAT

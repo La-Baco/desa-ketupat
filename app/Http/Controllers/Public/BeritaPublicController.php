@@ -26,7 +26,7 @@ class BeritaPublicController extends Controller
             $query->where('category', $request->category);
         }
 
-        $beritaList = $query->latest('published_at')->paginate(6)->withQueryString();
+        $beritaList = $query->latest('published_at')->paginate(10)->withQueryString();
         
         $categories = Berita::where('status', 'published')
             ->select('category')

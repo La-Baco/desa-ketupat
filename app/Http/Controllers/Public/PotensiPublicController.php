@@ -16,7 +16,7 @@ class PotensiPublicController extends Controller
             $query->where('category', $request->category);
         }
 
-        $potensis = $query->latest()->paginate(8)->withQueryString();
+        $potensis = $query->latest()->paginate(10)->withQueryString();
         
         $categories = [
             'Perikanan', 'Pertanian', 'UMKM', 'Wisata', 'Kerajinan', 'Produk Unggulan'
