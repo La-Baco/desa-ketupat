@@ -2,6 +2,7 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Administrator - Desa Ketupat</title>
     

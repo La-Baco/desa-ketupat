@@ -2,6 +2,7 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Website Resmi Desa Ketupat') - Kecamatan Raas, Kabupaten Sumenep</title>
     <meta name="description" content="@yield('meta_description', 'Portal Informasi dan Pelayanan Resmi Desa Ketupat, Kecamatan Raas, Kabupaten Sumenep, Jawa Timur.')">
