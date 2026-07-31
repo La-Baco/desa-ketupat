@@ -158,7 +158,7 @@
             <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 fade-in-section gap-4">
                 <div>
                     <span class="text-xs font-extrabold uppercase tracking-widest text-[#14532D] dark:text-emerald-400">Jadwal Kegiatan</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Agenda Desa Ketupat</h2>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">AGENDA DESA KETUPAT</h2>
                 </div>
                 <a href="{{ route('agenda.index') }}" class="px-6 py-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-[#14532D] dark:text-emerald-400 hover:bg-[#14532D] hover:text-white font-extrabold text-xs transition-all duration-300 flex items-center gap-2 border border-emerald-200 dark:border-emerald-800/40 shadow-sm hover:scale-105">
                     <span>Lihat Semua Agenda</span>

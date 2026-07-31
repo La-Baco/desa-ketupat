@@ -6,7 +6,7 @@
     <!-- Banner Header -->
     <div class="relative py-20 bg-gradient-to-r from-[#14532D] via-[#166534] to-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Profil Desa Ketupat</h1>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">PROFIL DESA KETUPAT</h1>
             <p class="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto font-light">
                 Kecamatan Raas, Kabupaten Sumenep, Provinsi Jawa Timur
             </p>
