@@ -41,13 +41,16 @@ class AgendaController extends Controller
         return redirect()->route('admin.agenda.index')->with('success', 'Agenda desa berhasil ditambahkan.');
     }
 
-    public function edit(Agenda $agenda)
+    public function edit($id)
     {
+        $agenda = Agenda::findOrFail($id);
         return view('admin.agenda.edit', compact('agenda'));
     }
 
-    public function update(Request $request, Agenda $agenda)
+    public function update(Request $request, $id)
     {
+        $agenda = Agenda::findOrFail($id);
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -70,8 +73,10 @@ class AgendaController extends Controller
         return redirect()->route('admin.agenda.index')->with('success', 'Agenda desa berhasil diperbarui.');
     }
 
-    public function destroy(Agenda $agenda)
+    public function destroy($id)
     {
+        $agenda = Agenda::findOrFail($id);
+
         if ($agenda->image && Storage::disk('public')->exists($agenda->image)) {
             Storage::disk('public')->delete($agenda->image);
         }

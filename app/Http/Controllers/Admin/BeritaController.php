@@ -45,13 +45,16 @@ class BeritaController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diterbitkan.');
     }
 
-    public function edit(Berita $berita)
+    public function edit($id)
     {
+        $berita = Berita::findOrFail($id);
         return view('admin.berita.edit', compact('berita'));
     }
 
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request, $id)
     {
+        $berita = Berita::findOrFail($id);
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category' => 'required|string|max:100',
@@ -78,8 +81,10 @@ class BeritaController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
-    public function destroy(Berita $berita)
+    public function destroy($id)
     {
+        $berita = Berita::findOrFail($id);
+
         if ($berita->image && Storage::disk('public')->exists($berita->image)) {
             Storage::disk('public')->delete($berita->image);
         }

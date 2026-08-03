@@ -45,14 +45,17 @@ class PotensiController extends Controller
         return redirect()->route('admin.potensi.index')->with('success', 'Potensi desa berhasil ditambahkan.');
     }
 
-    public function edit(Potensi $potensi)
+    public function edit($id)
     {
+        $potensi = Potensi::findOrFail($id);
         $categories = ['Perikanan', 'Pertanian', 'UMKM', 'Wisata', 'Kerajinan', 'Produk Unggulan'];
         return view('admin.potensi.edit', compact('potensi', 'categories'));
     }
 
-    public function update(Request $request, Potensi $potensi)
+    public function update(Request $request, $id)
     {
+        $potensi = Potensi::findOrFail($id);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:100',
@@ -80,8 +83,10 @@ class PotensiController extends Controller
         return redirect()->route('admin.potensi.index')->with('success', 'Potensi desa berhasil diperbarui.');
     }
 
-    public function destroy(Potensi $potensi)
+    public function destroy($id)
     {
+        $potensi = Potensi::findOrFail($id);
+
         if ($potensi->image && Storage::disk('public')->exists($potensi->image)) {
             Storage::disk('public')->delete($potensi->image);
         }

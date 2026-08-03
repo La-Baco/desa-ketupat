@@ -38,13 +38,16 @@ class GalleryController extends Controller
         return redirect()->route('admin.galeri.index')->with('success', 'Foto galeri berhasil diunggah.');
     }
 
-    public function edit(Gallery $galeri)
+    public function edit($id)
     {
+        $galeri = Gallery::findOrFail($id);
         return view('admin.galeri.edit', compact('galeri'));
     }
 
-    public function update(Request $request, Gallery $galeri)
+    public function update(Request $request, $id)
     {
+        $galeri = Gallery::findOrFail($id);
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -64,8 +67,10 @@ class GalleryController extends Controller
         return redirect()->route('admin.galeri.index')->with('success', 'Foto galeri berhasil diperbarui.');
     }
 
-    public function destroy(Gallery $galeri)
+    public function destroy($id)
     {
+        $galeri = Gallery::findOrFail($id);
+
         if ($galeri->image && Storage::disk('public')->exists($galeri->image)) {
             Storage::disk('public')->delete($galeri->image);
         }

@@ -56,16 +56,19 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified admin user.
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::findOrFail($id);
         return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified admin user in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
@@ -94,8 +97,10 @@ class UserController extends Controller
     /**
      * Remove the specified admin user from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::findOrFail($id);
+
         // Safety check: Prevent deleting currently logged-in account
         if (auth()->id() === $user->id) {
             return redirect()->route('admin.users.index')

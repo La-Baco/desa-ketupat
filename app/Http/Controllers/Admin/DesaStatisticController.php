@@ -29,8 +29,10 @@ class DesaStatisticController extends Controller
         return redirect()->back()->with('success', 'Data statistik berhasil ditambahkan.');
     }
 
-    public function update(Request $request, DesaStatistic $statistic)
+    public function update(Request $request, $id)
     {
+        $statistic = DesaStatistic::findOrFail($id);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'value' => 'required|integer|min:0',
@@ -44,8 +46,9 @@ class DesaStatisticController extends Controller
         return redirect()->back()->with('success', 'Data statistik berhasil diperbarui.');
     }
 
-    public function destroy(DesaStatistic $statistic)
+    public function destroy($id)
     {
+        $statistic = DesaStatistic::findOrFail($id);
         $statistic->delete();
         return redirect()->back()->with('success', 'Data statistik berhasil dihapus.');
     }

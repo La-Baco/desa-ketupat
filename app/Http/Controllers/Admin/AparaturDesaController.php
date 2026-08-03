@@ -42,13 +42,16 @@ class AparaturDesaController extends Controller
         return redirect()->route('admin.aparatur.index')->with('success', 'Data aparatur desa berhasil ditambahkan.');
     }
 
-    public function edit(AparaturDesa $aparatur)
+    public function edit($id)
     {
+        $aparatur = AparaturDesa::findOrFail($id);
         return view('admin.aparatur.edit', compact('aparatur'));
     }
 
-    public function update(Request $request, AparaturDesa $aparatur)
+    public function update(Request $request, $id)
     {
+        $aparatur = AparaturDesa::findOrFail($id);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
@@ -72,8 +75,10 @@ class AparaturDesaController extends Controller
         return redirect()->route('admin.aparatur.index')->with('success', 'Data aparatur desa berhasil diperbarui.');
     }
 
-    public function destroy(AparaturDesa $aparatur)
+    public function destroy($id)
     {
+        $aparatur = AparaturDesa::findOrFail($id);
+
         if ($aparatur->photo && Storage::disk('public')->exists($aparatur->photo)) {
             Storage::disk('public')->delete($aparatur->photo);
         }
