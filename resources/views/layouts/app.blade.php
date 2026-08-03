@@ -137,8 +137,13 @@
             <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-accent text-3xl font-bold transition-colors">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <img id="lightbox-img" src="" alt="Lightbox Image" class="max-h-[75vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain">
-            <div id="lightbox-caption" class="mt-4 text-center text-white text-lg font-medium"></div>
+            <img id="lightbox-img" src="" alt="Lightbox Image" class="max-h-[65vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain">
+            
+            <div class="mt-4 text-center text-white max-w-2xl px-4 space-y-1.5">
+                <h3 id="lightbox-title" class="text-lg sm:text-xl font-bold text-white drop-shadow"></h3>
+                <p id="lightbox-date" class="text-xs text-emerald-400 font-semibold"></p>
+                <p id="lightbox-desc" class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed pt-1 max-h-28 overflow-y-auto no-scrollbar"></p>
+            </div>
         </div>
     </div>
 
@@ -168,12 +173,26 @@
         });
 
         // Global Lightbox Functionality
-        function openLightbox(imageSrc, caption = '') {
+        function openLightboxFromElem(elem) {
+            const imageSrc = elem.getAttribute('data-image');
+            const title = elem.getAttribute('data-title') || '';
+            const description = elem.getAttribute('data-description') || '';
+            const date = elem.getAttribute('data-date') || '';
+            openLightbox(imageSrc, title, description, date);
+        }
+
+        function openLightbox(imageSrc, title = '', description = '', date = '') {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
-            const cap = document.getElementById('lightbox-caption');
+            const titleEl = document.getElementById('lightbox-title');
+            const descEl = document.getElementById('lightbox-desc');
+            const dateEl = document.getElementById('lightbox-date');
+
             img.src = imageSrc;
-            cap.innerText = caption;
+            if (titleEl) titleEl.innerText = title;
+            if (descEl) descEl.innerText = description;
+            if (dateEl) dateEl.innerText = date ? date : '';
+
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
