@@ -7,6 +7,21 @@
     <title>@yield('title', 'Website Resmi Desa Ketupat') - Kecamatan Raas, Kabupaten Sumenep</title>
     <meta name="description" content="@yield('meta_description', 'Portal Informasi dan Pelayanan Resmi Desa Ketupat, Kecamatan Raas, Kabupaten Sumenep, Jawa Timur.')">
     
+    <!-- Open Graph / Social Sharing Meta Tags -->
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:site_name" content="Desa Ketupat">
+    <meta property="og:title" content="@yield('og_title', View::yieldContent('title', 'Website Resmi Desa Ketupat'))">
+    <meta property="og:description" content="@yield('og_description', View::yieldContent('meta_description', 'Portal Informasi dan Pelayanan Resmi Desa Ketupat, Kecamatan Raas, Kabupaten Sumenep, Jawa Timur.'))">
+    <meta property="og:image" content="@yield('og_image', asset('images/logo.png'))">
+    <meta property="og:url" content="{{ request()->url() }}">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('og_title', View::yieldContent('title', 'Website Resmi Desa Ketupat'))">
+    <meta name="twitter:description" content="@yield('og_description', View::yieldContent('meta_description', 'Portal Informasi dan Pelayanan Resmi Desa Ketupat, Kecamatan Raas, Kabupaten Sumenep, Jawa Timur.'))">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/logo.png'))">
+
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
+@php
+    $imageUrl = $potensi->image ? (Str::startsWith($potensi->image, 'images/') ? asset($potensi->image) : asset('storage/' . $potensi->image)) : asset('images/placeholder.jpg');
+    $excerpt = Str::limit(strip_tags($potensi->description), 160);
+@endphp
+
 @section('title', $potensi->name . ' - Potensi Desa Ketupat')
-@section('meta_description', Str::limit(strip_tags($potensi->description), 150))
+@section('meta_description', $excerpt)
+
+@section('og_title', $potensi->name)
+@section('og_description', $excerpt)
+@section('og_image', $imageUrl)
+@section('og_type', 'article')
 
 @section('content')
     <!-- Banner Header -->
