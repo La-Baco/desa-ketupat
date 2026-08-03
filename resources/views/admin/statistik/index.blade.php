@@ -74,9 +74,9 @@
                             <td class="p-3 text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <!-- Edit Button Icon -->
+                                    <script id="stat-data-{{ $stat->id }}" type="application/json">@json($stat)</script>
                                     <button type="button" 
-                                        data-stat="{{ json_encode($stat) }}"
-                                        onclick="openEditStatModalFromBtn(this)" 
+                                        onclick="openEditStatModal({{ $stat->id }})" 
                                         class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/80 flex items-center justify-center transition" 
                                         title="Edit Data Statistik">
                                         <i class="fa-solid fa-pen-to-square text-sm"></i>
@@ -168,12 +168,14 @@
 
 @push('scripts')
 <script>
-    function openEditStatModalFromBtn(btn) {
-        const stat = JSON.parse(btn.getAttribute('data-stat'));
+    function openEditStatModal(id) {
+        const dataElem = document.getElementById(`stat-data-${id}`);
+        if (!dataElem) return;
+        const stat = JSON.parse(dataElem.textContent);
         const modal = document.getElementById('modal-edit-stat');
         const form = document.getElementById('form-edit-stat');
         
-        form.action = `/admin/statistik/${stat.id}`;
+        form.action = `{{ url('admin/statistik') }}/${stat.id}`;
         document.getElementById('edit-name').value = stat.name || '';
         document.getElementById('edit-value').value = stat.value || 0;
         document.getElementById('edit-unit').value = stat.unit || '';

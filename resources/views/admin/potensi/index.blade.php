@@ -50,9 +50,9 @@
                                 <a href="{{ route('potensi.show', $pot->slug) }}" target="_blank" class="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 hover:bg-blue-100 flex items-center justify-center transition" title="Lihat Potensi">
                                     <i class="fa-solid fa-eye text-sm"></i>
                                 </a>
+                                <script id="potensi-data-{{ $pot->id }}" type="application/json">@json($pot)</script>
                                 <button type="button"
-                                    data-pot="{{ json_encode($pot) }}"
-                                    onclick="openEditPotensiModalFromBtn(this)" 
+                                    onclick="openEditPotensiModal({{ $pot->id }})" 
                                     class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 hover:bg-amber-100 flex items-center justify-center transition" 
                                     title="Edit Potensi">
                                     <i class="fa-solid fa-pen-to-square text-sm"></i>
@@ -218,12 +218,14 @@
         document.getElementById('modal-create-potensi').classList.add('hidden');
     }
 
-    function openEditPotensiModalFromBtn(btn) {
-        const pot = JSON.parse(btn.getAttribute('data-pot'));
+    function openEditPotensiModal(id) {
+        const dataElem = document.getElementById(`potensi-data-${id}`);
+        if (!dataElem) return;
+        const pot = JSON.parse(dataElem.textContent);
         const modal = document.getElementById('modal-edit-potensi');
         const form = document.getElementById('form-edit-potensi');
         
-        form.action = `/admin/potensi/${pot.id}`;
+        form.action = `{{ url('admin/potensi') }}/${pot.id}`;
         document.getElementById('edit-po-name').value = pot.name || '';
         document.getElementById('edit-po-category').value = pot.category || 'Perikanan';
         document.getElementById('edit-po-location').value = pot.location || '';

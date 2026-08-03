@@ -52,9 +52,9 @@
                                 <a href="{{ route('berita.show', $news->slug) }}" target="_blank" class="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 hover:bg-blue-100 flex items-center justify-center transition" title="Lihat Berita">
                                     <i class="fa-solid fa-eye text-sm"></i>
                                 </a>
+                                <script id="berita-data-{{ $news->id }}" type="application/json">@json($news)</script>
                                 <button type="button" 
-                                    data-news="{{ json_encode($news) }}" 
-                                    onclick="openEditBeritaModalFromBtn(this)" 
+                                    onclick="openEditBeritaModal({{ $news->id }})" 
                                     class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 hover:bg-amber-100 flex items-center justify-center transition" 
                                     title="Edit Berita">
                                     <i class="fa-solid fa-pen-to-square text-sm"></i>
@@ -218,12 +218,14 @@
         document.getElementById('modal-create-berita').classList.add('hidden');
     }
 
-    function openEditBeritaModalFromBtn(btn) {
-        const news = JSON.parse(btn.getAttribute('data-news'));
+    function openEditBeritaModal(id) {
+        const dataElem = document.getElementById(`berita-data-${id}`);
+        if (!dataElem) return;
+        const news = JSON.parse(dataElem.textContent);
         const modal = document.getElementById('modal-edit-berita');
         const form = document.getElementById('form-edit-berita');
         
-        form.action = `/admin/berita/${news.id}`;
+        form.action = `{{ url('admin/berita') }}/${news.id}`;
         document.getElementById('edit-b-title').value = news.title || '';
         document.getElementById('edit-b-category').value = news.category || '';
         document.getElementById('edit-b-status').value = news.status || 'published';

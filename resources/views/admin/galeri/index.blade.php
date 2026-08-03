@@ -33,9 +33,9 @@
                     </div>
 
                     <div class="pt-3 border-t border-slate-100 dark:border-slate-700 flex justify-end gap-2">
+                        <script id="galeri-data-{{ $galeri->id }}" type="application/json">@json($galeri)</script>
                         <button type="button"
-                            data-galeri="{{ json_encode($galeri) }}"
-                            onclick="openEditGaleriModalFromBtn(this)" 
+                            onclick="openEditGaleriModal({{ $galeri->id }})" 
                             class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 hover:bg-amber-100 flex items-center justify-center transition" 
                             title="Edit Foto">
                             <i class="fa-solid fa-pen-to-square text-sm"></i>
@@ -157,12 +157,14 @@
         document.getElementById('modal-create-galeri').classList.add('hidden');
     }
 
-    function openEditGaleriModalFromBtn(btn) {
-        const galeri = JSON.parse(btn.getAttribute('data-galeri'));
+    function openEditGaleriModal(id) {
+        const dataElem = document.getElementById(`galeri-data-${id}`);
+        if (!dataElem) return;
+        const galeri = JSON.parse(dataElem.textContent);
         const modal = document.getElementById('modal-edit-galeri');
         const form = document.getElementById('form-edit-galeri');
         
-        form.action = `/admin/galeri/${galeri.id}`;
+        form.action = `{{ url('admin/galeri') }}/${galeri.id}`;
         document.getElementById('edit-ga-title').value = galeri.title || '';
         document.getElementById('edit-ga-event_date').value = galeri.event_date ? galeri.event_date.split('T')[0] : '';
         document.getElementById('edit-ga-description').value = galeri.description || '';

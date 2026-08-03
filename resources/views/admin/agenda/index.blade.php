@@ -36,9 +36,9 @@
                         <td class="p-3 text-slate-500">{{ $agenda->location ?? '-' }}</td>
                         <td class="p-3 text-center">
                             <div class="flex items-center justify-center gap-2">
+                                <script id="agenda-data-{{ $agenda->id }}" type="application/json">@json($agenda)</script>
                                 <button type="button"
-                                    data-agenda="{{ json_encode($agenda) }}"
-                                    onclick="openEditAgendaModalFromBtn(this)" 
+                                    onclick="openEditAgendaModal({{ $agenda->id }})" 
                                     class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 hover:bg-amber-100 flex items-center justify-center transition" 
                                     title="Edit Agenda">
                                     <i class="fa-solid fa-pen-to-square text-sm"></i>
@@ -192,12 +192,14 @@
         document.getElementById('modal-create-agenda').classList.add('hidden');
     }
 
-    function openEditAgendaModalFromBtn(btn) {
-        const agenda = JSON.parse(btn.getAttribute('data-agenda'));
+    function openEditAgendaModal(id) {
+        const dataElem = document.getElementById(`agenda-data-${id}`);
+        if (!dataElem) return;
+        const agenda = JSON.parse(dataElem.textContent);
         const modal = document.getElementById('modal-edit-agenda');
         const form = document.getElementById('form-edit-agenda');
         
-        form.action = `/admin/agenda/${agenda.id}`;
+        form.action = `{{ url('admin/agenda') }}/${agenda.id}`;
         document.getElementById('edit-ag-title').value = agenda.title || '';
         document.getElementById('edit-ag-event_date').value = agenda.event_date ? agenda.event_date.split('T')[0] : '';
         document.getElementById('edit-ag-start_time').value = agenda.start_time || '';

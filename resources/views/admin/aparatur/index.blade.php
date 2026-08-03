@@ -47,9 +47,9 @@
                         </td>
                         <td class="p-3 text-center">
                             <div class="flex items-center justify-center gap-2">
+                                <script id="aparatur-data-{{ $ap->id }}" type="application/json">@json($ap)</script>
                                 <button type="button" 
-                                    data-ap="{{ json_encode($ap) }}"
-                                    onclick="openEditAparaturModalFromBtn(this)" 
+                                    onclick="openEditAparaturModal({{ $ap->id }})" 
                                     class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 hover:bg-amber-100 flex items-center justify-center transition" 
                                     title="Edit Aparatur">
                                     <i class="fa-solid fa-pen-to-square text-sm"></i>
@@ -197,12 +197,14 @@
         document.getElementById('modal-create-aparatur').classList.add('hidden');
     }
 
-    function openEditAparaturModalFromBtn(btn) {
-        const ap = JSON.parse(btn.getAttribute('data-ap'));
+    function openEditAparaturModal(id) {
+        const dataElem = document.getElementById(`aparatur-data-${id}`);
+        if (!dataElem) return;
+        const ap = JSON.parse(dataElem.textContent);
         const modal = document.getElementById('modal-edit-aparatur');
         const form = document.getElementById('form-edit-aparatur');
         
-        form.action = `/admin/aparatur/${ap.id}`;
+        form.action = `{{ url('admin/aparatur') }}/${ap.id}`;
         document.getElementById('edit-ap-name').value = ap.name || '';
         document.getElementById('edit-ap-position').value = ap.position || '';
         document.getElementById('edit-ap-description').value = ap.description || '';

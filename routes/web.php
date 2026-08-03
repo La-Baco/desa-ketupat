@@ -87,7 +87,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('aparatur', AparaturDesaController::class);
 
     // Berita CRUD
-    Route::resource('berita', BeritaController::class);
+    Route::resource('berita', BeritaController::class)->parameters(['berita' => 'berita']);
 
     // Agenda CRUD
     Route::resource('agenda', AgendaController::class);
